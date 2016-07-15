@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>IOC Container im Vergleich</title>
+    <title>VS2015 / Resharper / C#6</title>
 
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/theme/white.css">
@@ -27,9 +27,245 @@
     <div class="reveal">
         <div class="slides">
             <section>
-                <h1>Visual Studio / Resharper / c#6</h1>
+                <h1>Visual Studio / Resharper / C#6</h1>
             </section>
-            
+            <section>
+                <ul>
+                    <li>Visual Studio 2015 vs 2013</li>
+                    <li>Resharper 2016.x vs 8</li>
+                    <li>C#6 vs 5</li>
+                </ul>
+            </section>
+            <section>
+                <section><h1>Visual Studio 2015</h1></section>
+                <section>
+                    <ul>
+                        <li>Aktuell Update 5</li>
+                        <li>Nächste Version VS15 bereits in Entwicklung</li>
+                        <li>Community Edition gleicher Funktionsumfang wie Professional</li>
+                        <li>... jedoch nur bis zu einer bestimmten Firmengröße kommerziell nutzbar</li>
+                        <li>Manche Features nur mit Win8+ nutzbar (z.B: CPU Profil).</li>
+                    </ul>
+                </section>
+                <section>
+                    <ul>
+                        <li>Native C#6 Unterstützung</li>
+                        <li>Aber auch noch die "alten" C# Versionen</li>
+                        <li>Universal Windows Platform (Win10 Apps)</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Roslyn</h2>
+                    <ul>
+                        <li>Compiler/Workspace API</li>
+                        <li>Code Fixes</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Diagnosetools (DEMO)</h2>
+                    <ul>
+                        <li>Debugmodus</li>
+                        <li>Prozessor-/Speicherauslastung</li>
+                        <li>Speichersnapshots mit Vergleichsmöglichkeit</li>
+                    </ul>                
+                </section>
+                <section>
+                    <h2>Codelense (DEMO)</h2>
+                    <ul>
+                        <li>Anzahl der Verweise</li>
+                        <li>Wer hat Wann Änderungen durchgeführt</li>
+                        <li>...</li>
+                        <li>Konfigurierbar</li>
+                    </ul>
+                    </section>
+                <section>
+                    <h2>NuGet (DEMO)</h2>
+                    <ul>
+                        <li>Neue UI</li>
+                        <li>Installation von beliebigen Versionen möglich</li>
+                        <li>Konsolidierungsansicht</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Git</h2>
+                    <ul>
+                        <li>Client bereits integriert (s. Team Explorer)</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Xamarin</h2>
+                    <ul>
+                        <li>Laut MS komplett in VS integriert</li>
+                        <li>Auch in Community Edition ohne Einschränkungen nutzbar</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Emulatoren</h2>
+                    <ul>
+                        <li>Feinste Android/Phone Emulatoren</li>
+                        <li>Nur auf Win8+ Rechnern nutzbar :-(, da u.a. HyperV benötigt wird</li> 
+                    </ul>
+                </section>
+                <section>
+                    <h2>Webzeugs</h2>
+                    <ul>
+                        <li>Bessere Typeskript Unterstützung</li>
+                        <li>... Javascript, Html, ...</li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section><h1>Resharper 2016.x</h1></section>
+                <section>
+                    <ul>
+                        <li>Graphen (DEMO)</li>
+                        <li>Json</li>
+                        <li>Build System (DEMO) ... mit Vorsicht zu genießen</li>
+                        <li>Mehr alt+enter Vorschläge wie z.B: Codestyle</li>
+                        <li>Xamarin XAML Intellisense</li>
+                        <li>IL View</li>
+                        <li>NuGet Typsuche</li>
+                        <li>Webzeugs ;-)</li>
+                        <li>...</li>
+                        <li>https://www.jetbrains.com/resharper/whatsnew/</li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h1>C#6</h1>
+                    <p>https://github.com/dotnet/roslyn/wiki/New-Language-Features-in-C%23-6</p>
+                    <p>http://developer.telerik.com/featured/essential-c-6-features-you-need-to-know/</p>
+                </section>
+                <section>
+                    <h2>Auto Property Initialisierer</h2>
+                    <pre><code class="cs" data-trim>
+public class Customer
+{
+    public string First { get; set; } = "Jane";
+    public string Last { get; set; } = "Doe";
+}
+</code></pre>
+                    <pre><code class="cs" data-trim>
+public class Customer
+{
+    public string First { get; } = "Jane";
+    public string Last { get; } = "Doe";
+}
+</code></pre>
+                    <pre><code class="cs" data-trim>
+public class Customer
+{
+    public string Name { get; }
+    public Customer(string first, string last)
+    {
+        Name = first + " " + last;
+    }
+}
+</code></pre>
+                </section>
+                <section>
+                    <h2>Expression Bodies</h2>
+                    <pre><code class="cs" data-trim>
+public Point Move(int dx, int dy) => new Point(x + dx, y + dy); 
+</code></pre>
+                    <pre><code class="cs" data-trim>
+public string Name => First + " " + Last;
+</code></pre>
+                </section>
+                <section>
+                    <h2>Static Using</h2>
+                    <pre><code class="cs" data-trim>
+using static System.Console;
+using static CSharpSix.YetAnotherClass;
+
+namespace CSharpSix {
+    class Program {
+        static void Main(string[] args) {
+            WriteLine("Hello World!");
+            HelloBack();
+        }
+    }
+    static class YetAnotherClass {
+        public static void HelloBack() {
+            WriteLine("Hello Computer!");
+        }
+    }
+}
+</code></pre>
+                </section>
+                <section>
+                    <h2>Expression Bodies on Method/Property</h2>
+                    <pre><code class="cs" data-trim>
+public Point Move(int dx, int dy) => new Point(x + dx, y + dy); 
+</code></pre>
+                    <pre><code class="cs" data-trim>
+public string Name => First + " " + Last;
+</code></pre>
+                </section>
+                <section>
+                    <h2>Null Condition</h2>
+                    <pre><code class="cs" data-trim>
+int? length = customers?.Length; // null if customers is null
+Customer first = customers?[0];  // null if customers is null
+</code></pre>
+                </section>
+                <section>
+                    <h2>String Interpolation</h2>
+                    <pre><code class="cs" data-trim>
+string firstName = "Michael";
+string lastName = "Crump";
+
+WriteLine($"{firstName} {lastName} is my name!");
+</code></pre>       
+                </section>
+                <section>
+                    <h2>nameof()</h2>
+                    <pre><code class="cs" data-trim>
+if (x == null) throw new ArgumentNullException(nameof(x));
+</code></pre>
+                    <pre><code class="cs" data-trim>
+WriteLine(nameof(person.Address.ZipCode)); // prints "ZipCode"
+</code></pre>
+                </section>
+                <section>
+                    <h2>Exception Filters</h2>
+                    <pre><code class="cs" data-trim>
+try { … }
+catch (MyException e) when (myfilter(e))
+{
+    …
+}
+</code></pre>
+                    <pre><code class="cs" data-trim>
+private static bool Log(Exception e) { 
+    /* log it */ ;
+    return false; 
+}
+…
+try { … } catch (Exception e) when (Log(e)) {}
+</code></pre>
+                </section>
+                <section>
+                    <h2>await in catch und finally</h2>
+                    <pre><code class="cs" data-trim>
+Resource res = null;
+try {
+    res = await Resource.OpenAsync(…);
+    …
+} 
+catch(ResourceException e) {
+    await Resource.LogAsync(res, e);
+}
+finally {
+    if (res != null) await res.CloseAsync();
+}
+</code></pre>
+                </section>
+            </section>
+            <section>
+                <h1>Danke</h1>
+            </section>
         </div>
     </div>
 
